@@ -38,7 +38,7 @@ class KakaoOAuthClient(
 			"client_secret" to secretKey,
 		)
 		return restClient.post()
-			.uri("$KAKAO_AUTH_BASE_URL/oauth2.0/token")
+			.uri("$KAKAO_AUTH_BASE_URL/oauth/token")
 			.contentType(MediaType.APPLICATION_FORM_URLENCODED)
 			.body(LinkedMultiValueMap<String, String>().apply { this.setAll(requestData) })
 			.retrieve()
