@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:test;MODE=MySQL;
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  h2:
+    console:
+      path: /h2-console
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: create
+
+oauth:
+  kakao:
+    clientId: a5dfddf236f48de68399381e82161482
+    redirectUrl: http://localhost:3000/auth/login/kakao/callback
+    secretKey: ${OAuth_Kakao_SecretKey}
+  naver:
+    clientId: z0HCwMWDVPFHcD_UfB4J
+    redirectUrl: http://localhost:3000/auth/login/naver/callback
+    secretKey: ${OAuth_Naver_SecretKey}

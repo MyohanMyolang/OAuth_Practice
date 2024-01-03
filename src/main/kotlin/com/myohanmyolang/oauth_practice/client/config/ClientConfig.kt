@@ -1,8 +1,9 @@
 package com.myohanmyolang.oauth_practice.client.config
 
-import com.myohanmyolang.oauth_practice.client.KakaoOAuthClient
+import com.myohanmyolang.oauth_practice.client.kakao.KakaoOAuthClient
 import com.myohanmyolang.oauth_practice.client.OAuthClient
 import com.myohanmyolang.oauth_practice.client.OAuthClientContainer
+import com.myohanmyolang.oauth_practice.client.naver.NaverOAuthClient
 import com.myohanmyolang.oauth_practice.domain.entity.OAuth2Provider
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -12,10 +13,14 @@ import org.springframework.web.client.RestClient
 class ClientConfig {
 
 	@Bean
-	fun oAuthFactoryConfiguration(): OAuthClientContainer{
+	fun oAuthFactoryConfiguration(
+		kakaoOAuthClient: KakaoOAuthClient,
+		naverOAuthClient: NaverOAuthClient
+	): OAuthClientContainer{
 		val clientList = HashMap<OAuth2Provider, OAuthClient>()
 
-		clientList.put(OAuth2Provider.kakao, KakaoOAuthClient())
+		clientList[OAuth2Provider.kakao] = kakaoOAuthClient
+		clientList[OAuth2Provider.naver] = naverOAuthClient
 
 		return OAuthClientContainer(clientList)
 	}

@@ -1,14 +1,16 @@
 package com.myohanmyolang.oauth_practice.api.login.service
 
 import com.myohanmyolang.oauth_practice.client.OAuthClientContainer
+import com.myohanmyolang.oauth_practice.common.JwtHelper
 import com.myohanmyolang.oauth_practice.domain.entity.OAuth2Provider
-import com.myohanmyolang.oauth_practice.domain.service.MemberService
+import com.myohanmyolang.oauth_practice.domain.service.SocialMemberService
 import org.springframework.stereotype.Service
 
 @Service
 class OAuth2Service(
 	private val oAuthClientContainer: OAuthClientContainer,
-	private val memberService: MemberService
+	private val socialMemberService: SocialMemberService,
+	private val jwtHelper: JwtHelper
 ) {
 
 	/**
@@ -20,10 +22,9 @@ class OAuth2Service(
 	 *  5. 정보를 토대로 JwtToken 발행
 	 */
 	fun login(authorizationCode: String, provider: OAuth2Provider) =
-		oAuthClientContainer.getClient(provider).let { client ->
-			client.getAccessToken(authorizationCode).let { client.retrieveUserInfo(it) } }
-			.let { memberService.registerIfAbsent(it, provider) }
-			.let { jwtHelper.generateAcessToken(it.nickname) }
+		oAuthClientContainer.getClient(provider).getUserInfoByAuthorizationCode(authorizationCode)
+			.let { socialMemberService.registerIfAbsent(it, provider) }
+			.let { jwtHelper.generateAccessToken(it.nickname) }
 
 
 }
