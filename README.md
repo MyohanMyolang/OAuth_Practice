@@ -11,3 +11,6 @@
 > 2. RestClient
 > > 사용법이 간단하여 코드를 보는 것 만으로도 충분히 이해가 가능하며 편하게 작업이 가능했다. 
 > 3. OAuth 로그인의 간단한 구현
+
+# SequenceDiagram
+![OAuth](https://github.com/MyohanMyolang/OAuth_Practice/assets/85920191/78712a72-42f4-495d-b4d3-6c45075cefdf)
