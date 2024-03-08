@@ -29,13 +29,6 @@ class NaverOAuthClient(
 	}
 
 	override fun getAccessToken(authorizationCode: String): String {
-		val requestData = mutableMapOf(
-			"grant_type" to "authorization_code",
-			"client_id" to clientId,
-			"code" to authorizationCode,
-			"client_secret" to secretKey,
-			"state" to "practice"
-		)
 		val url = StringBuilder(NAVER_AUTH_BASE_URL)
 			.append("/oauth2.0/token")
 			.append("?grant_type=").append("authorization_code")

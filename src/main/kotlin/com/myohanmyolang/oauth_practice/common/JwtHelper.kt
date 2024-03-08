@@ -4,5 +4,5 @@ import org.springframework.stereotype.Component
 
 @Component
 class JwtHelper {
-	fun generateAccessToken(nickname: String) = "Token ${nickname}"
+    fun generateAccessToken(nickname: String) = "Token ${nickname}"
 }

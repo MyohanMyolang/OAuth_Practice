@@ -42,6 +42,8 @@ class SocialMemberEntity(
 			}
 		}
 	}
+
+
 }
 
 enum class OAuth2Provider {

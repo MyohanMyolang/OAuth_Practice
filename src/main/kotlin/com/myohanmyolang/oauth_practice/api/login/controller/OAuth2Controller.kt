@@ -15,8 +15,8 @@ class OAuth2Controller(
 
 	@GetMapping("/login/{provider}")
 	fun redirectLoginPage(response: HttpServletResponse, @PathVariable provider: OAuth2Provider) {
-		oAuthClientContainer.getClient(provider).let {
-			response.sendRedirect(it.generateLoginPageUrl())
+		oAuthClientContainer.getClient(provider) {
+			response.sendRedirect(generateLoginPageUrl())
 		}
 	}
 
